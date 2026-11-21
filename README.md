@@ -1,8 +1,9 @@
+
 # 📰 News Topic Classification Using NLP
 
 ### 🚀 Intelligent News Headline Classification with Machine Learning
 
-![Python](https://img.shields.io/badge/Python-3.15-blue?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3-blue?logo=python&logoColor=white)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Logistic%20Regression-orange)
 ![NLP](https://img.shields.io/badge/NLP-TF--IDF-purple)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Web%20App-FF4B4B?logo=streamlit&logoColor=white)
@@ -17,9 +18,9 @@ In today's digital world, thousands of news articles are published every minute.
 
 **News Topic Classification** is a Natural Language Processing (NLP) project that automatically identifies the topic of a news headline using Machine Learning.
 
-The system analyzes the headline and predicts its most relevant category, along with a confidence score, through an interactive Streamlit web application.
+The system analyzes a headline and predicts its most relevant category, along with a confidence score, through an interactive Streamlit web application.
 
-🎯 **Project Goal:** Build an accurate, efficient, and user-friendly news classification system.
+**Project Goal:** Build an accurate, efficient, and user-friendly news classification system.
 
 ---
 
@@ -33,6 +34,7 @@ The system analyzes the headline and predicts its most relevant category, along 
 - ⚡ **TF-IDF Feature Extraction** — Converts text into numerical features.
 - 🌐 **Interactive Web Application** — Built using Streamlit.
 - 📈 **Model Evaluation** — Includes precision, recall, F1-score, and confusion matrix.
+- 📉 **Exploratory Data Analysis** — Visualizes the distribution of news categories.
 
 ---
 
@@ -57,7 +59,7 @@ The model classifies news headlines into four categories:
 
 The original dataset contains **422,419 news articles**.
 
-### 📊 Category Distribution
+### 📊 Original Dataset Distribution
 
 | Category | Number of Articles |
 |---|---:|
@@ -69,7 +71,25 @@ The original dataset contains **422,419 news articles**.
 
 The dataset includes news headlines, URLs, publishers, categories, timestamps, and other metadata.
 
-For model training, the project primarily uses the news headline and its corresponding category.
+For model training, this project primarily uses the news headline and its corresponding category.
+
+**Note:** The distribution above represents the original dataset before preprocessing and duplicate removal. The number of records used for training and testing is lower after cleaning.
+
+### 📥 Dataset Download
+
+The dataset is not included in this GitHub repository because of its size.
+
+To reproduce the project:
+
+1. Download the News Aggregator Dataset from the UCI Machine Learning Repository.
+2. Extract the dataset.
+3. Create a folder named `data` in the project root if it does not exist.
+4. Place the dataset inside that folder.
+5. Rename the dataset file to `newsCorpora.csv` if necessary.
+
+Expected location:
+
+`data/newsCorpora.csv`
 
 ---
 
@@ -77,39 +97,15 @@ For model training, the project primarily uses the news headline and its corresp
 
 The complete machine learning pipeline follows these steps:
 
-**📥 Dataset Collection**
-
-↓
-
-**🔍 Exploratory Data Analysis**
-
-↓
-
-**🧹 Data Cleaning & Text Preprocessing**
-
-↓
-
-**✂️ Train-Test Split (80:20)**
-
-↓
-
-**🔢 TF-IDF Feature Extraction**
-
-↓
-
-**🤖 Logistic Regression Model Training**
-
-↓
-
-**📊 Model Evaluation**
-
-↓
-
-**💾 Model Serialization**
-
-↓
-
-**🌐 Streamlit Web Application**
+1. **Dataset Collection** — Download the labelled news dataset.
+2. **Exploratory Data Analysis** — Examine dataset structure and category distribution.
+3. **Data Cleaning & Preprocessing** — Normalize headlines and remove duplicate records.
+4. **Train-Test Split** — Divide the dataset into training and testing sets (80:20).
+5. **TF-IDF Feature Extraction** — Convert headlines into numerical feature vectors.
+6. **Model Training** — Train a multiclass Logistic Regression classifier.
+7. **Model Evaluation** — Calculate accuracy, precision, recall, F1-score, and confusion matrix.
+8. **Model Serialization** — Save the trained model and TF-IDF vectorizer.
+9. **Web Application** — Build an interactive prediction interface using Streamlit.
 
 ### 🧹 Text Preprocessing
 
@@ -126,6 +122,20 @@ The preprocessing pipeline includes:
 **Logistic Regression** is used for multiclass news classification.
 
 TF-IDF (Term Frequency–Inverse Document Frequency) converts news headlines into numerical feature vectors, which are then used to train the classification model.
+
+---
+
+## 📊 Exploratory Data Analysis
+
+Exploratory Data Analysis (EDA) helps us understand the distribution and characteristics of the news dataset before model training.
+
+### 📈 News Category Distribution
+
+The following visualization shows the number of articles belonging to each category after preprocessing.
+
+![News Category Distribution](screenshots/category_distribution.png)
+
+The visualization helps identify differences in the number of available training examples across categories.
 
 ---
 
@@ -146,15 +156,28 @@ The trained model achieved the following performance on **81,462 test articles**
 
 ### 📉 Confusion Matrix
 
-The confusion matrix helps visualize correct and incorrect predictions across the four news categories.
+The confusion matrix visualizes correct and incorrect predictions across the four news categories.
 
-It shows that the model performs particularly well on Entertainment headlines, while some confusion exists between Business and Technology.
+![Confusion Matrix](screenshots/confusion_matrix.png)
+
+The model performs particularly well on Entertainment headlines, while some confusion exists between Business and Technology.
+
+### 🔍 Performance Analysis
+
+- The model achieves an overall accuracy of approximately 93.82%.
+- Entertainment has the highest reported F1-score.
+- Health headlines have a slightly lower recall compared with some other categories.
+- TF-IDF and Logistic Regression provide a strong baseline for multiclass news headline classification.
 
 ---
 
 ## 🖥️ Web Application
 
 The project includes a Streamlit-based interface where users can enter a news headline and instantly receive a predicted category and confidence score.
+
+### 📸 Application Screenshot
+
+![News Topic Classification App](screenshots/app_prediction.png)
 
 ### 🔎 Example Prediction
 
@@ -164,10 +187,18 @@ The project includes a Streamlit-based interface where users can enter a news he
 
 **Model Output:**
 
-- 🏷️ Predicted Category: **Technology**
-- 🎯 Confidence Score: **99.15%**
+- 🏷️ **Predicted Category:** Technology
+- 🎯 **Confidence Score:** 99.15%
 
-*Note: The confidence score represents the model's estimated probability, not a guarantee of correctness.*
+**Note:** The confidence score represents the model's estimated probability, not a guarantee of correctness.
+
+### ✨ Application Features
+
+- Classifies headlines into Business, Entertainment, Health, and Technology.
+- Uses TF-IDF Vectorization and Logistic Regression.
+- Provides instant category predictions.
+- Displays prediction confidence scores.
+- Provides an interactive interface using Streamlit.
 
 ---
 
@@ -175,15 +206,15 @@ The project includes a Streamlit-based interface where users can enter a news he
 
 | Technology | Purpose |
 |---|---|
-| 🐍 Python | Programming language |
-| 🐼 Pandas | Dataset manipulation |
-| 🔢 NumPy | Numerical operations |
-| 🧠 Scikit-learn | Machine learning and evaluation |
-| 📝 TF-IDF | Text feature extraction |
-| 📊 Matplotlib | Data visualization |
-| 🌐 Streamlit | Interactive web interface |
-| 📓 Jupyter Notebook | Experimentation and analysis |
-| 💾 Pickle | Model serialization |
+| Python | Programming language |
+| Pandas | Dataset manipulation |
+| NumPy | Numerical operations |
+| Scikit-learn | Machine learning and evaluation |
+| TF-IDF | Text feature extraction |
+| Matplotlib | Data visualization |
+| Streamlit | Interactive web interface |
+| Jupyter Notebook | Experimentation and analysis |
+| Pickle | Model serialization |
 
 ---
 
@@ -192,20 +223,28 @@ The project includes a Streamlit-based interface where users can enter a news he
 ```text
 news-topic-classification/
 │
-├── 📂 data/
-│   └── newsCorpora.csv
+├── data/
+│   └── newsCorpora.csv          # Download separately
 │
-├── 📂 notebooks/
+├── notebooks/
 │   └── news_classification.ipynb
 │
-├── 📂 models/
+├── models/
 │   ├── news_model.pkl
 │   └── tfidf_vectorizer.pkl
 │
-├── 🐍 app.py
-├── 📋 requirements.txt
-└── 📖 README.md
+├── screenshots/
+│   ├── app_prediction.png
+│   ├── category_distribution.png
+│   └── confusion_matrix.png
+│
+├── app.py
+├── requirements.txt
+├── .gitignore
+└── README.md
 ```
+
+**Note:** The `data/newsCorpora.csv` file is stored locally and excluded from Git tracking.
 
 ---
 
@@ -214,11 +253,9 @@ news-topic-classification/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/news-topic-classification.git
+git clone https://github.com/DevanshKumar01/news-topic-classification.git
 cd news-topic-classification
 ```
-
-Replace `YOUR_USERNAME` with your GitHub username after creating the repository.
 
 ### 2️⃣ Create a Virtual Environment
 
@@ -228,10 +265,10 @@ python -m venv .venv
 
 ### 3️⃣ Activate the Environment
 
-**Windows:**
+**Windows (PowerShell):**
 
 ```powershell
-.venv\Scripts\activate
+.\.venv\Scripts\Activate.ps1
 ```
 
 **macOS / Linux:**
@@ -246,19 +283,45 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-### 5️⃣ Run the Streamlit Application
+### 5️⃣ Download the Dataset
+
+Download the dataset from:
+
+https://archive.ics.uci.edu/dataset/359/news+aggregator
+
+Place the extracted dataset at:
+
+```text
+data/newsCorpora.csv
+```
+
+The dataset is required for running the training notebook. The Streamlit application uses the previously trained model files.
+
+### 6️⃣ Run the Streamlit Application
 
 ```bash
 python -m streamlit run app.py
 ```
 
-### 6️⃣ Open the Application
+### 7️⃣ Open the Application
 
 Visit:
 
 **http://localhost:8501**
 
 Enter a news headline and click **Classify News** to view the prediction.
+
+### 8️⃣ Run the Jupyter Notebook (Optional)
+
+Open:
+
+```text
+notebooks/news_classification.ipynb
+```
+
+Select the project's Python environment as the notebook kernel.
+
+Run the notebook cells in sequence to reproduce preprocessing, training, evaluation, and visualizations.
 
 ---
 
@@ -268,6 +331,7 @@ This project demonstrates practical experience with:
 
 - Natural Language Processing fundamentals
 - Text preprocessing and cleaning
+- Exploratory Data Analysis
 - Feature extraction using TF-IDF
 - Supervised machine learning
 - Multiclass text classification
@@ -310,58 +374,36 @@ Potential enhancements include:
 
 ## 📌 Project Status
 
-✅ Dataset Collection
-
-✅ Data Preprocessing
-
-✅ Feature Engineering
-
-✅ Model Training
-
-✅ Model Evaluation
-
-✅ Confusion Matrix
-
-✅ Streamlit Web Application
-
-✅ Prediction Testing
-
-🚧 GitHub Repository & Final Documentation
+- ✅ Dataset Collection
+- ✅ Data Cleaning & Preprocessing
+- ✅ Exploratory Data Analysis
+- ✅ TF-IDF Feature Engineering
+- ✅ Model Training
+- ✅ Model Evaluation
+- ✅ Confusion Matrix
+- ✅ Streamlit Web Application
+- ✅ Prediction Testing
+- ✅ GitHub Repository Created
+- ✅ README Documentation
+- 🚧 Final Project Report
+- 🚧 Final Presentation
 
 ---
 
-## 📸 Application Screenshot
+## 📋 Academic Project Information
 
-Below is a screenshot of the working Streamlit application, demonstrating real-time news headline classification.
+**Project:** P3 — News Topic Classification
 
-![News Topic Classification App](screenshots/app_prediction.png)
+**Course:** Natural Language Processing (NLP) Capstone Project
 
-### 🧪 Example Prediction
+**University:** K.R. Mangalam University
 
-| Feature | Result |
-|---|---|
-| 📰 Input Headline | Apple launches new artificial intelligence technology |
-| 🏷️ Predicted Category | Technology |
-| 🎯 Confidence Score | 99.15% |
-| 🤖 Model | Logistic Regression |
-| 📊 Overall Model Accuracy | 93.82% |
+**Group:** 13
 
-### ✨ Application Features
+**Student:** Devansh Kumar
 
-- 📰 Classifies news headlines into **Business, Entertainment, Health, and Technology**
-- 🧠 Uses **TF-IDF Vectorization** and **Logistic Regression**
-- ⚡ Provides instant category predictions
-- 🎯 Displays prediction confidence scores
-- 💻 Interactive web interface built using **Streamlit**
-
----
-
-### 👨‍💻 Project Information
-
-**Project:** P3 — News Topic Classification  
-**Course:** Natural Language Processing (NLP) Capstone Project  
-**Group:** 13  
-**Student:** Devansh Kumar  
 **Roll Number:** 2401730127
+
+---
 
 ⭐ If you found this project useful, consider starring the repository!
