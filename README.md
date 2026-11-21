@@ -330,8 +330,38 @@ Potential enhancements include:
 
 ---
 
-## ⭐ Support
+## 📸 Application Screenshot
 
-If you find this project useful, consider giving the repository a ⭐ on GitHub!
+Below is a screenshot of the working Streamlit application, demonstrating real-time news headline classification.
 
-**Built with 🐍 Python, 🧠 Machine Learning, and ❤️ for NLP.**
+![News Topic Classification App](screenshots/app_prediction.png)
+
+### 🧪 Example Prediction
+
+| Feature | Result |
+|---|---|
+| 📰 Input Headline | Apple launches new artificial intelligence technology |
+| 🏷️ Predicted Category | Technology |
+| 🎯 Confidence Score | 99.15% |
+| 🤖 Model | Logistic Regression |
+| 📊 Overall Model Accuracy | 93.82% |
+
+### ✨ Application Features
+
+- 📰 Classifies news headlines into **Business, Entertainment, Health, and Technology**
+- 🧠 Uses **TF-IDF Vectorization** and **Logistic Regression**
+- ⚡ Provides instant category predictions
+- 🎯 Displays prediction confidence scores
+- 💻 Interactive web interface built using **Streamlit**
+
+---
+
+### 👨‍💻 Project Information
+
+**Project:** P3 — News Topic Classification  
+**Course:** Natural Language Processing (NLP) Capstone Project  
+**Group:** 13  
+**Student:** Devansh Kumar  
+**Roll Number:** 2401730127
+
+⭐ If you found this project useful, consider starring the repository!
